@@ -35,3 +35,24 @@ const slider2 = document.querySelector(".slider2");
 
 createSlider(slider1);
 createSlider(slider2);
+
+const themeSwitch = document.getElementById('theme-switch');
+const body = document.body;
+
+const lightmode = localStorage.getItem('lightmode');
+
+if (lightmode === 'enabled') {
+  body.classList.add('lightmode');
+}
+
+themeSwitch.addEventListener("click", () => {
+  const isLightMode = body.classList.contains('lightmode');
+  
+  if (isLightMode) {
+    body.classList.remove('lightmode');
+    localStorage.setItem('lightmode', 'disabled');
+  } else {
+    body.classList.add('lightmode');
+    localStorage.setItem('lightmode', 'enabled');
+  }
+});

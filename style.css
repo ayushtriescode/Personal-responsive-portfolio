@@ -10,22 +10,37 @@
   --base-color-variant: #9929ea;
   --headtext-color: #cc66da;
   --text-color: #faeb92;
+  --overlay-main: rgba(0, 0, 0, 0.4);      
+  --overlay-soft: rgba(0, 0, 0, 0.2);     
+  --gradient-primary: rgba( 0, 0, 0, 0.9);
+  --gradient-start: rgba(56, 56, 56, 0.5); 
+  --gradient-end: rgba(0, 0, 0, 0.4);
 }
 
 /* LightMode */
 
 .lightmode {
-  --base-color: #ffffff;
-  --base-color-variant: #f3e8ff;
-  --headtext-color: #6b21a8;
-  --text-color: #1f2937;
+  --base-color: #fdf9f0;
+  --base-color-variant: #9929ea;
+  --headtext-color: #cc66da;
+  --text-color: #1f1633;
+  --overlay-main: rgba(255, 255, 255, 0.01);  
+  --overlay-soft: rgba(255, 255, 255, 0.25);
+  --gradient-primary: rgba(253, 249, 240, 0.92);   
+  --gradient-start: rgba(31, 22, 51, 0.35);        
+  --gradient-end: rgba(99, 41, 138, 0.28);
 }
-.lightmode header::before {
+.lightmode header::before, footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  background-color: var(--overlay-main);
+  z-index: 0; /* Changed to 0 to stay behind text */
+}
+
+header *, footer * {
+  position: relative;
+  z-index: 2;
 }
 body {
   background-color: var(--base-color);
@@ -33,7 +48,7 @@ body {
 
 header {
   background:
-    radial-gradient(circle, rgba(56, 56, 56, 0.5) 0%, rgba(0, 0, 0, 0.4) 100%),
+    radial-gradient(circle, var(--gradient-start) 0%, var(--gradient-end) 100%),
     url(navback.png);
   background-size: cover;
   background-position: center;
@@ -45,7 +60,7 @@ header::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--overlay-main);
 }
 
 header * {
@@ -69,6 +84,33 @@ nav {
   display: inline-block;
   transform: perspective(500px) rotateX(20deg);
   letter-spacing: 3px;
+}
+
+#theme-switch{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: var(--base-color-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  border: none;
+}
+
+#theme-switch i {
+  display: none;
+}
+
+body:not(.lightmode) #theme-switch i:first-child {
+  display: block;
+}
+
+.lightmode #theme-switch i:last-child {
+  display: block;
 }
 
 .start {
@@ -138,6 +180,19 @@ nav {
   opacity: 0.6;
 }
 
+.hero-start {
+  text-decoration: none;
+  background-color: var(--base-color-variant);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  padding: 7px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* About Section */
 
 .about{
@@ -269,7 +324,7 @@ footer{
 
 footer {
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(56, 56, 56, 0.5)),
+    linear-gradient(to bottom, var(--gradient-primary), var(--gradient-start)),
     url(navback.png);
   background-size: cover;
   background-position: bottom;
@@ -281,7 +336,7 @@ footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--overlay-main);
 }
 
 footer * {
