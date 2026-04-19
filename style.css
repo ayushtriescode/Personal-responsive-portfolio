@@ -46,12 +46,10 @@ header::before {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
 }
 
 header * {
   position: relative;
-  z-index: 2;
 }
 
 /* Navbar */
@@ -142,7 +140,7 @@ nav {
 
 /* About Section */
 
-main{
+.about{
     margin-top: 100px;
 }
 
@@ -168,7 +166,6 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    
 }
 .abt-content p{
     font-family: var(--font-main);
@@ -190,7 +187,72 @@ main{
 }
 
 .abt-icon i:hover {
-  filter: drop-shadow(0 0 12px #cc66da);
+  filter: drop-shadow(0 0 2px #cc66da);
   transform: scale(1.1);
   cursor: pointer;
+}
+
+/* Projects */
+.projects{
+  margin-top: 100px;
+  height: 150px;
+}
+.projects h2{
+    font-family: var(--font-main);
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--headtext-color);
+}
+
+.slider{
+  width: 90%;
+  height: 650px;
+  margin: auto;
+  margin-top: 50px;
+  box-shadow: 0px 0px 8px var(--text-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.slide{
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  position: absolute;
+}
+
+.project{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.project-slide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+.project button{
+  height: 60px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  color: var(--text-color);
+  background-color: #cc66da;
+}
+
+.projects h5, p{
+    font-family: var(--font-main);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+.projects p{
+  font-size: 1.05rem;
 }
