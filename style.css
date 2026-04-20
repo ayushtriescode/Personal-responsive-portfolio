@@ -26,7 +26,7 @@
   --text-color: #1f1633;
   --overlay-main: rgba(255, 255, 255, 0.01);  
   --overlay-soft: rgba(255, 255, 255, 0.25);
-  --gradient-primary: rgba(253, 249, 240, 0.92);   
+  --gradient-primary: rgba(253, 249, 240);   
   --gradient-start: rgba(31, 22, 51, 0.35);        
   --gradient-end: rgba(99, 41, 138, 0.28);
 }
@@ -35,7 +35,7 @@
   position: absolute;
   inset: 0;
   background-color: var(--overlay-main);
-  z-index: 0; /* Changed to 0 to stay behind text */
+  z-index: 0;
 }
 
 header *, footer * {
@@ -56,13 +56,6 @@ header {
   position: relative;
 }
 
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--overlay-main);
-}
-
 header * {
   position: relative;
 }
@@ -70,9 +63,11 @@ header * {
 /* Navbar */
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 70vw;
+  width: 90%;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -99,6 +94,7 @@ nav {
   right: 20px;
   font-size: 1.5rem;
   border: none;
+  cursor: pointer;
 }
 
 #theme-switch i {
@@ -129,26 +125,29 @@ body:not(.lightmode) #theme-switch i:first-child {
 
 /* Hero Section */
 .hero-sec {
-  margin-top: calc(650px - 67px - 300px);
+  padding: 100px 0;
   display: flex;
   flex-direction: column;
-  height: 250px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 .hero-sec h1 {
-  height: 140px;
-  width: 60vw;
+  height: auto;
+  width: 90%;
+  max-width: 800px;
   margin: auto;
   font-family: var(--font-main);
-  font-size: 3rem;
-  line-height: 45px;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1.2;
   text-align: center;
   color: white;
 }
 
 .hero-sec p {
-  margin-bottom: 40px;
+  max-width: 600px;
+  width: 90%;
   font-family: var(--font-main);
   font-size: 1.2rem;
   color: white;
@@ -156,9 +155,11 @@ body:not(.lightmode) #theme-switch i:first-child {
 
 .hero-signin {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  width: 90%;
   margin: auto;
 }
 
@@ -169,7 +170,8 @@ body:not(.lightmode) #theme-switch i:first-child {
   font-size: 1rem;
   padding: 25px;
   height: 20px;
-  width: 30vw;
+  width: 100%;
+  max-width: 400px;
   color: var(--text-color);
   background-color: transparent;
 }
@@ -208,15 +210,17 @@ body:not(.lightmode) #theme-switch i:first-child {
 
 .about-me{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    width: 80vw;
+    gap: 2rem;
+    width: 90%;
     margin: auto;
 }
 
 
 .abt-content{
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -259,10 +263,11 @@ body:not(.lightmode) #theme-switch i:first-child {
 }
 
 .slider{
-  width: 90%;
-  height: 650px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   box-shadow: 0px 0px 8px var(--text-color);
   position: relative;
   overflow: hidden;
@@ -289,16 +294,19 @@ body:not(.lightmode) #theme-switch i:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   width: 100%;
   margin: auto;
 }
 .project button{
-  height: 60px;
+  padding: 8px 8px;
+  height: auto;
   border: none;
   font-size: 1rem;
   border-radius: 10px;
   color: var(--text-color);
   background-color: #cc66da;
+  cursor: pointer;
 }
 
 .projects h5, 
@@ -344,6 +352,7 @@ footer * {
 }
 
 .foot p:first-of-type{
+  text-align: center;
   font-family: var(--font-main);
   font-size: 1.3rem;
   color: var(--text-color);
@@ -415,4 +424,39 @@ footer * {
   font-family: var(--font-main);
   font-size: 0.85rem;
   color: var(--text-color);
+}
+
+/* Responsiveness */
+
+@media (min-width: 768px) {
+  .navlogo {
+    font-size: 35px;
+  }
+  
+  .hero-sec {
+    height: auto;
+    padding: 100px 0;
+  }
+  
+  .abt-icon i {
+    font-size: 3rem; /* Smaller icons for smaller screens */
+  }
+
+  .about-me {
+    flex-direction: row;
+    align-items: center;
+  }
+  .abt-content {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-sec h1 {
+    font-size: 1.8rem;
+  }
+  
+  .start {
+    display: none; /* Hide nav button on tiny screens to save space */
+  }
 }
